@@ -21,7 +21,7 @@ const navItems = [
 
 <template>
 	<header class="bg-gradient-to-r from-blue-600 to-purple-700">
-		<div class="max-w-6xl mx-auto p-6 text-white flex justify-between items-center">
+		<div class="max-w-6xl mx-auto p-3 text-white flex justify-between items-center">
 			<div class="italic font-semibold text-2xl button-animation">
 				<i>Daily<strong>Hentai</strong></i>
 			</div>
@@ -32,31 +32,3 @@ const navItems = [
 		</div>
 	</header>
 </template>
-
-<!--<template>
-	<header class="bg-gradient-to-r from-blue-600 to-purple-700">
-		<div class="max-w-6xl mx-auto p-6 text-white flex justify-between items-center">
-			<div class="italic font-semibold text-2xl">
-				<NuxtLink href="/" key="/">
-					<a class="p-2 px-3 bg-white bg-opacity-0 hover:bg-opacity-10 rounded">
-						Daily<strong>Hentai</strong>
-					</a>
-				</NuxtLink>
-			</div>
-			<nav class="hidden md:block">
-				<NuxtLink v-for="link in navItems" :href="link.href" :key="link.href">
-					<a class="p-2 px-3 bg-white bg-opacity-0 hover:bg-opacity-10 rounded">
-						{{ link.label }}
-					</a>
-				</NuxtLink>
-			</nav>
-			<div class="hidden md:block">
-				<NuxtLink href="https://api.challengepoints.net/api/auth/discord" key="/login">
-					<a class="p-2 px-3 bg-white bg-opacity-0 hover:bg-opacity-10 rounded">
-						Log <strong>In</strong>
-					</a>
-				</NuxtLink>
-			</div>
-		</div>
-	</header>
-</template>-->
