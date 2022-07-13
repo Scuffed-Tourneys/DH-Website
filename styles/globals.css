@@ -2,12 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-	@apply bg-gray-800 text-gray-200;
-}
-
-.button-animation {
-	@apply p-2 px-3 bg-white bg-opacity-0 hover:bg-opacity-10 rounded transition-all duration-100 ease-in-out;
+html {
+	@apply bg-gray-900 text-gray-200;
+	font-family: 'Roboto', sans-serif;
 }
 
 .image-showcase {
