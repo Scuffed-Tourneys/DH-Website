@@ -12,6 +12,7 @@ const Home: NextPage = (props: any) => {
 			<Head>
 				<title>{props.data.name}</title>
 				<meta content={props.data.name} property="og:title" />
+				<meta content="website" property="og:type" />
 				<meta content={props.data.uploadedBy.username} property="og:description" />
 				<meta
 					content={`https://dailies.tk/collection/${props.data.id}`}

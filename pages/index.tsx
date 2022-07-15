@@ -9,6 +9,7 @@ const Home: NextPage = (props: any) => {
 			<Head>
 				<title>Dailies</title>
 				<meta content="Dailies" property="og:title" />
+				<meta content="website" property="og:type" />
 				<meta content="Daily pogger photos!" property="og:description" />
 				<meta content="https://dailies.tk/" property="og:url" />
 				<meta content={props.data[0].images[0].url} property="og:image" />
