@@ -27,10 +27,12 @@ const Showcase = (props: props) => {
 								<div className="showcase-flip-card-front rounded-lg">
 									<Image
 										src={item.images[imageIndex].url}
-										className="rounded-lg object-cover"
+										className="rounded-lg object-cover transition-all duration-500 ease-in-out"
 										alt=""
 										width="225"
 										height="320"
+										placeholder="blur"
+										blurDataURL="https://cdn.discordapp.com/emojis/777535544216518656.webp?size=4096&quality=lossless"
 									/>
 								</div>
 								<div className="showcase-flip-card-back rounded-lg">

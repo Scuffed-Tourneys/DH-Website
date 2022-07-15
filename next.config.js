@@ -5,7 +5,7 @@ const nextConfig = {
 		locales: ['en'],
 		defaultLocale: 'en',
 	},
-	images: { domains: ['files.catbox.moe', 'cdn.discordapp.com', 'dailies.tk'] },
+	images: { domains: ['files.catbox.moe', 'cdn.discordapp.com', 'api.dailies.tk'] },
 	/*async headers() {
 		return [
 			{

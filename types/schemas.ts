@@ -17,7 +17,7 @@ export interface Image {
 	averageRating: number;
 	favoritedBy: any[];
 	rating?: any;
-	favorited: boolean;
+	favorited?: boolean;
 }
 
 export interface ThemeSchema {

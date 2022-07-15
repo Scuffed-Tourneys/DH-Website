@@ -25,7 +25,7 @@ export const getServerSideProps: GetServerSideProps = async (
 	context: GetServerSidePropsContext
 ) => {
 	const res = await get(
-		`https://dailies.tk/api/collections?offset=${
+		`https://api.dailies.tk/collections?offset=${
 			Number(context.params?.page) * 20 || 0
 		}&limit=20`
 	);

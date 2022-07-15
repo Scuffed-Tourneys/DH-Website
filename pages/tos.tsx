@@ -28,9 +28,9 @@ const TOU = () => {
 
 					<p>
 						Permission is granted to temporarily download one copy of the materials on
-						dailies.tk's Website for personal, non-commercial transitory viewing only.
-						This is the grant of a license, not a transfer of title, and under this
-						license you may not:
+						dailies.tk&apos;s Website for personal, non-commercial transitory viewing
+						only. This is the grant of a license, not a transfer of title, and under
+						this license you may not:
 					</p>
 
 					<br />
@@ -41,7 +41,7 @@ const TOU = () => {
 							use the materials for any commercial purpose or for any public display;
 						</li>
 						<li>
-							attempt to reverse engineer any software contained on dailies.tk's
+							attempt to reverse engineer any software contained on dailies.tk&apos;s
 							Website;
 						</li>
 						<li>
@@ -49,8 +49,8 @@ const TOU = () => {
 							or
 						</li>
 						<li>
-							transferring the materials to another person or "mirror" the materials
-							on any other server.
+							transferring the materials to another person or &#39;mirror&#39; the
+							materials on any other server.
 						</li>
 					</ul>
 
@@ -71,12 +71,12 @@ const TOU = () => {
 					<h2 className="font-bold">3. Disclaimer</h2>
 
 					<p>
-						All the materials on dailies.tk’s Website are provided "as is". dailies.tk
-						makes no warranties, may it be expressed or implied, therefore negates all
-						other warranties. Furthermore, dailies.tk does not make any representations
-						concerning the accuracy or reliability of the use of the materials on its
-						Website or otherwise relating to such materials or any sites linked to this
-						Website.
+						All the materials on dailies.tk’s Website are provided &#39;as is&#39;.
+						dailies.tk makes no warranties, may it be expressed or implied, therefore
+						negates all other warranties. Furthermore, dailies.tk does not make any
+						representations concerning the accuracy or reliability of the use of the
+						materials on its Website or otherwise relating to such materials or any
+						sites linked to this Website.
 					</p>
 
 					<br />
@@ -138,8 +138,8 @@ const TOU = () => {
 					<h2 className="font-bold">9. Governing Law</h2>
 
 					<p>
-						Any claim related to dailies.tk's Website shall be governed by the laws of
-						nl without regards to its conflict of law provisions.
+						Any claim related to dailies.tk&apos;s Website shall be governed by the laws
+						of nl without regards to its conflict of law provisions.
 					</p>
 
 					<br />
