@@ -17,7 +17,7 @@ const Home: NextPage = (props: any) => {
 					content={`https://dailies.tk/collection/${props.data.id}`}
 					property="og:url"
 				/>
-				<meta content={props.data[0].images[0].url} property="og:image" />
+				<meta content={props.data.images[0].url} property="og:image" />
 				<meta content="#2f3136" data-react-helmet="true" name="theme-color" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
