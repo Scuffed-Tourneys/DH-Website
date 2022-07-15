@@ -10,8 +10,15 @@ const Home: NextPage = (props: any) => {
 	return (
 		<div>
 			<Head>
-				<title>Dailies</title>
-				<meta name="description" content="Daily pogger photos!" />
+				<title>{props.data.name}</title>
+				<meta content={props.data.name} property="og:title" />
+				<meta content={props.data.uploadedBy.username} property="og:description" />
+				<meta
+					content={`https://dailies.tk/collection/${props.data.id}`}
+					property="og:url"
+				/>
+				<meta content={props.data[0].images[0].url} property="og:image" />
+				<meta content="#2f3136" data-react-helmet="true" name="theme-color" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 

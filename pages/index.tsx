@@ -8,7 +8,11 @@ const Home: NextPage = (props: any) => {
 		<div>
 			<Head>
 				<title>Dailies</title>
-				<meta name="description" content="Daily pogger photos!" />
+				<meta content="Dailies" property="og:title" />
+				<meta content="Daily pogger photos!" property="og:description" />
+				<meta content="https://dailies.tk/" property="og:url" />
+				<meta content={props.data[0].images[0].url} property="og:image" />
+				<meta content="#2f3136" data-react-helmet="true" name="theme-color" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
