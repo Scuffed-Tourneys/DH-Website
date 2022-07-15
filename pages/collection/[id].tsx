@@ -45,7 +45,7 @@ const Home: NextPage = (props: any) => {
 												className="rounded-lg object-contain"
 											/>
 										</div>
-										<video width="225" height="320" autoPlay>
+										<video width="225" height="320" controls>
 											<source src={image.url} type="video/mp4" />
 											your browser is so old it can&apos;t even display
 											video&apos;s smh my head my head
