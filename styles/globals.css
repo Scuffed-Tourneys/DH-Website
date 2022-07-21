@@ -25,6 +25,11 @@ html {
 	transition: all 0.4s ease-in-out;
 }
 
+.flip {
+	-webkit-transform: scaleX(-1);
+	transform: scaleX(-2);
+}
+
 .showcase-grid {
 	@apply grid gap-4 m-16 grid-cols-6;
 	grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));

@@ -23,15 +23,30 @@ const Home: NextPage = (props: any) => {
 
 			<main>
 				<Showcase items={props.data} />
-				<Link href={`/?page=${Number(router.query.page) + 1}`}>
-					<Image
-						src="https://cdn.discordapp.com/emojis/777535544216518656.webp?size=4096&quality=lossless"
-						className="rounded-lg"
-						alt=""
-						width="100"
-						height="100"
-					/>
-				</Link>
+				<div>
+					<Link
+						href={`/?page=${
+							Number(router.query?.page) == 0 ? 0 : Number(router.query?.page) - 1
+						}`}
+					>
+						<Image
+							src="https://cdn.discordapp.com/emojis/777535544216518656.webp?size=4096&quality=lossless"
+							className="rounded-lg flip"
+							alt=""
+							width="100"
+							height="100"
+						/>
+					</Link>
+					<Link href={`/?page=${Number(router.query?.page || 0) + 1}`}>
+						<Image
+							src="https://cdn.discordapp.com/emojis/777535544216518656.webp?size=4096&quality=lossless"
+							className="rounded-lg"
+							alt=""
+							width="100"
+							height="100"
+						/>
+					</Link>
+				</div>
 			</main>
 
 			<footer></footer>
