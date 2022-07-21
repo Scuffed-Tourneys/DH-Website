@@ -26,7 +26,7 @@ html {
 }
 
 .showcase-grid {
-	@apply grid gap-4 m-16;
+	@apply grid gap-4 m-16 grid-cols-6;
 	grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
 }
 
