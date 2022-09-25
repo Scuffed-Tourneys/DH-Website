@@ -22,29 +22,30 @@ const Home: NextPage = (props: any) => {
 			</Head>
 
 			<main>
-				<Showcase items={props.data} />
-				<div>
+				<article className="mt-16">
+					<Showcase items={props.data} />
+				</article>
+				<div className="w-full text-center my-4">
 					<Link
 						href={`/?page=${
 							Number(router.query?.page) == 0 ? 0 : Number(router.query?.page) - 1
 						}`}
 					>
-						<Image
-							src="https://cdn.discordapp.com/emojis/777535544216518656.webp?size=4096&quality=lossless"
-							className="rounded-lg flip"
-							alt=""
-							width="100"
-							height="100"
-						/>
+						<button
+							disabled={Number(router.query?.page || 0) == 0 ? true : false}
+							className="text-white border-2 border-white border-opacity-25 rounded-xl px-2 py-1 mx-2 transition duration-100 enabled:hover:border-blue-600 enabled:active:bg-blue-600 disabled:opacity-50 disabled:border-gray-600 disabled:cursor-not-allowed"
+						>
+							<p className="mx-1">{'<'}</p>
+						</button>
 					</Link>
+					Page {router.query?.page || 1}
 					<Link href={`/?page=${Number(router.query?.page || 0) + 1}`}>
-						<Image
-							src="https://cdn.discordapp.com/emojis/777535544216518656.webp?size=4096&quality=lossless"
-							className="rounded-lg"
-							alt=""
-							width="100"
-							height="100"
-						/>
+						<button
+							disabled={false}
+							className="text-white border-2 border-white border-opacity-25 rounded-xl px-2 py-1 mx-2 transition duration-100 enabled:hover:border-blue-600 enabled:active:bg-blue-600 disabled:opacity-50 disabled:border-gray-600 disabled:cursor-not-allowed"
+						>
+							<p className="mx-1">{'>'}</p>
+						</button>
 					</Link>
 				</div>
 			</main>

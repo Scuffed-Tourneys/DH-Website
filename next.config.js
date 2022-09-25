@@ -5,24 +5,9 @@ const nextConfig = {
 		locales: ['en'],
 		defaultLocale: 'en',
 	},
-	images: { domains: ['files.catbox.moe', 'cdn.discordapp.com', 'api.dailies.tk'] },
-	/*async headers() {
-		return [
-			{
-				source: '/',
-				headers: [
-					{
-						key: 'Cache-Control',
-						value: 'public, max-age=31536000, immutable',
-					},
-					{
-						key: 'Access-Control-Allow-Origin',
-						value: '*',
-					},
-				],
-			},
-		];
-	},*/
+	images: {
+		domains: ['files.catbox.moe', 'de.catbox.moe', 'cdn.discordapp.com', 'api.dailies.tk'],
+	},
 };
 
 module.exports = nextConfig;

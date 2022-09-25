@@ -69,7 +69,7 @@ const Home: NextPage = (props: any) => {
 										</div>
 										<Image
 											src={image.url}
-											className="rounded-lg object-cover transition-all duration-500"
+											className="rounded-lg object-cover pointer-cursor transition-all duration-500 ease-in-out"
 											alt=""
 											width="225"
 											height="320"

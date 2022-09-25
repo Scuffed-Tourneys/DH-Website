@@ -25,15 +25,26 @@ const Showcase = (props: props) => {
 						<div className="showcase-flip-card">
 							<div className="showcase-flip-card-inner">
 								<div className="showcase-flip-card-front rounded-lg">
-									<Image
-										src={item.images[imageIndex].url}
-										className="rounded-lg object-cover transition-all duration-500 ease-in-out"
-										alt=""
-										width="225"
-										height="320"
-										placeholder="blur"
-										blurDataURL="https://cdn.discordapp.com/emojis/777535544216518656.webp?size=4096&quality=lossless"
-									/>
+									<div>
+										<div className="bg-gray-500 rounded-lg w-[225px] h-[320px] absolute">
+											<Image
+												src="/loading.gif"
+												width="225"
+												height="320"
+												alt=""
+												className="rounded-lg object-contain"
+											/>
+										</div>
+										<Image
+											src={item.images[imageIndex].url}
+											className="rounded-lg object-cover transition-all duration-500 ease-in-out"
+											alt=""
+											width="225"
+											height="320"
+											placeholder="blur"
+											blurDataURL={item.images[imageIndex].url}
+										/>
+									</div>
 								</div>
 								<div className="showcase-flip-card-back rounded-lg">
 									<h1>

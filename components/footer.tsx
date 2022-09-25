@@ -3,10 +3,10 @@ import Link from 'next/link';
 const Footer = () => {
 	return (
 		<div className="h-16">
-			<footer className="fixed bottom-0 left-0 w-screen bg-gray-800 text-gray-300">
+			<footer className="bottom-0 left-0 w-full bg-gray-800 text-gray-300">
 				<div className="flex flex-auto flex-row text-center">
 					<div className="max-w-3xl mx-auto p-5">
-						© {new Date().getFullYear()} Dailies
+						© {new Date().getFullYear()} Scuffed Tourneys
 					</div>
 					<div className="max-w-3xl mx-auto p-5">
 						<Link href="/privacy" passHref>
