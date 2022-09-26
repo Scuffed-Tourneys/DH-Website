@@ -31,7 +31,7 @@ const Home: NextPage = (props: any) => {
 					<h2>{props.data.uploadedBy.username}</h2>
 					<p>{`${date.getDay()}/${date.getMonth()}/${date.getFullYear()}`}</p>
 				</div>
-				<div className="showcase-grid">
+				<div className="grid gap-4 pl-16 pr-[1rem] mx-auto grid-cols-6 grid-rows-3 w-min-[0px] w-max-[1920px] h-min-[0px] h-max-[1080px]">
 					{props.data.images.map((image: schemas.Image, index: number) => {
 						if (image.url.endsWith('.mp4')) {
 							return (
