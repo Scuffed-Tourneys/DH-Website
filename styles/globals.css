@@ -7,6 +7,14 @@ html {
 	font-family: 'Roboto', sans-serif;
 }
 
+input {
+	@apply p-1 bg-transparent border-2 rounded-md border-opacity-25 border-white valid:border-transparent valid:border-green-600 hover:border-blue-600 transition-all duration-200 ease-in-out;
+}
+
+input::file-selector-button {
+	display: none;
+}
+
 .image-showcase {
 	margin: -16px -8px;
 	position: relative;
@@ -28,11 +36,6 @@ html {
 .flip {
 	-webkit-transform: scaleX(-1);
 	transform: scaleX(-2);
-}
-
-.showcase-grid {
-	@apply grid gap-4 mx-16 grid-cols-6;
-	grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
 }
 
 .showcase-flip-card {

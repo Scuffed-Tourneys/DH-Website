@@ -83,8 +83,6 @@ const Home: NextPage = (props: any) => {
 					})}
 				</div>
 			</main>
-
-			<footer></footer>
 		</div>
 	);
 };

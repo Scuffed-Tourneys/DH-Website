@@ -1,7 +1,6 @@
 import get from 'axios';
 import type { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next';
 import Head from 'next/head';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Showcase from '../components/showcase';
@@ -49,8 +48,6 @@ const Home: NextPage = (props: any) => {
 					</Link>
 				</div>
 			</main>
-
-			<footer></footer>
 		</div>
 	);
 };

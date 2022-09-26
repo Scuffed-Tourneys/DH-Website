@@ -8,7 +8,7 @@ interface props {
 
 const Showcase = (props: props) => {
 	return (
-		<div className="showcase-grid">
+		<div className="grid gap-4 pl-16 pr-[1rem] mx-auto grid-cols-6 grid-rows-3 w-[1920px] h-[1080px]">
 			{props.items.map((item, index) => {
 				let imageIndex: number = 0;
 				for (var i = 0; i < item.images.length; i++) {
@@ -26,7 +26,7 @@ const Showcase = (props: props) => {
 							<div className="showcase-flip-card-inner">
 								<div className="showcase-flip-card-front rounded-lg">
 									<div>
-										<div className="bg-gray-500 rounded-lg w-[225px] h-[320px] absolute">
+										<div className="bg-gray-500 rounded-lg w-full h-full absolute">
 											<Image
 												src="/loading.gif"
 												width="225"

@@ -14,8 +14,8 @@ export const navItems: {
 		label: 'Home',
 	},
 	{
-		href: '/dashboard',
-		label: 'Dashboard',
+		href: '/upload',
+		label: 'Upload',
 	},
 ];
 
