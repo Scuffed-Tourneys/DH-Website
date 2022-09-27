@@ -12,6 +12,7 @@ const Upload: NextPage = (props: any) => {
 	const [spinnerActive, setSpinnerActive] = useState<boolean>(false);
 
 	const nameInput = createRef<HTMLInputElement>();
+	const publicInput = createRef<HTMLInputElement>();
 	const imagesInput = createRef<HTMLInputElement>();
 
 	const { data, error } = useSWR('https://api.dailies.tk/', fetcher);
@@ -20,17 +21,83 @@ const Upload: NextPage = (props: any) => {
 
 	function upload(files: FileList) {
 		setSpinnerActive(true);
-		for (let i = 0; i < files.length; i++) {
-			const formData = new FormData();
-			let file = files.item(i);
-			if (file != null) {
-				formData.append('file', file);
-				axios.post('https://api.dailies.tk/collection/add/351', formData, {
-					headers: { 'content-type': 'multipart/form-data' },
-				});
-			}
-		}
-		router.push('/');
+		fetch('https://api.dailies.tk/collection/new', {
+			method: 'POST',
+			credentials: 'include',
+			body: JSON.stringify({
+				name: nameInput.current!.value,
+				timestamp: Date.now(),
+				published: publicInput.current!.value == 'on' ? true : false,
+			}),
+		})
+			.then((res) => {
+				res.json()
+					.then((r) => {
+						for (let i = 0; i < files.length; i++) {
+							const formData = new FormData();
+							let file = files.item(i);
+							if (file != null) {
+								formData.append('file', file);
+								axios
+									.post(
+										`https://api.dailies.tk/collection/${r.id}/image`,
+										formData,
+										{
+											headers: { 'content-type': 'multipart/form-data' },
+											withCredentials: true,
+										}
+									)
+									.catch((e) => {
+										alert(e);
+									});
+							}
+						}
+						router.push('/');
+					})
+					.catch((e) => {
+						alert(e);
+					});
+			})
+			.catch((e) => {
+				alert(e);
+			});
+		/*
+		axios
+			.post(
+				'https://api.dailies.tk/collection/new',
+				{
+					name: nameInput.current!.value,
+					timestamp: Date.now(),
+					published: publicInput.current!.value == 'on' ? true : false,
+				},
+				{ withCredentials: true }
+			)
+			.then((res) => {
+				for (let i = 0; i < files.length; i++) {
+					const formData = new FormData();
+					let file = files.item(i);
+					if (file != null) {
+						formData.append('file', file);
+						axios
+							.post(
+								`https://api.dailies.tk/collection/${res.data.id}/image`,
+								formData,
+								{
+									headers: { 'content-type': 'multipart/form-data' },
+									withCredentials: true,
+								}
+							)
+							.catch((e) => {
+								alert(e);
+							});
+					}
+				}
+				router.push('/');
+			})
+			.catch((e) => {
+				alert(e);
+			});
+			*/
 	}
 
 	if (Object.keys(data).length === 0) {
@@ -55,6 +122,10 @@ const Upload: NextPage = (props: any) => {
 						<form className="grid gap-2">
 							<label htmlFor="name">Collection name: </label>
 							<input ref={nameInput} type="text" id="name" required />
+							<div>
+								<label htmlFor="public">Public: </label>
+								<input ref={publicInput} type="checkbox" id="public" required />
+							</div>
 							<label htmlFor="images">Select images: </label>
 							<input
 								className="input"

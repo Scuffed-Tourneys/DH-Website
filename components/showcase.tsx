@@ -14,7 +14,9 @@ const Showcase = (props: props) => {
 				for (var i = 0; i < item.images.length; i++) {
 					if (
 						item.images[i].url.includes('.png') ||
-						item.images[i].url.includes('.jpg')
+						item.images[i].url.includes('.jpg') ||
+						item.images[i].url.includes('.jpeg') ||
+						item.images[i].url.includes('.gif')
 					) {
 						imageIndex = i;
 						break;
