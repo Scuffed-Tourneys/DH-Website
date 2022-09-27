@@ -21,7 +21,7 @@ const Upload: NextPage = (props: any) => {
 
 	function upload(files: FileList) {
 		setSpinnerActive(true);
-		fetch('https://api.dailies.tk/collection/new', {
+		/*fetch('https://api.dailies.tk/collection/new', {
 			method: 'POST',
 			credentials: 'include',
 			body: JSON.stringify({
@@ -60,8 +60,8 @@ const Upload: NextPage = (props: any) => {
 			})
 			.catch((e) => {
 				alert(e);
-			});
-		/*
+			});*/
+
 		axios
 			.post(
 				'https://api.dailies.tk/collection/new',
@@ -97,7 +97,6 @@ const Upload: NextPage = (props: any) => {
 			.catch((e) => {
 				alert(e);
 			});
-			*/
 	}
 
 	if (Object.keys(data).length === 0) {
