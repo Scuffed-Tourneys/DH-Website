@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import { createRef, useState } from 'react';
 import axios from 'axios';
-import router from 'next/router';
+import { useRouter } from 'next/router';
 import useSWR from 'swr';
 
 const fetcher = (url: string) => fetch(url, { credentials: 'include' }).then((r) => r.json());
@@ -15,53 +15,14 @@ const Upload: NextPage = (props: any) => {
 	const publicInput = createRef<HTMLInputElement>();
 	const imagesInput = createRef<HTMLInputElement>();
 
+	const router = useRouter();
+
 	const { data, error } = useSWR('https://api.dailies.tk/', fetcher);
 	if (!data) return <h1>loading</h1>;
 	if (error) return <h1>error</h1>;
 
 	function upload(files: FileList) {
 		setSpinnerActive(true);
-		/*fetch('https://api.dailies.tk/collection/new', {
-			method: 'POST',
-			credentials: 'include',
-			body: JSON.stringify({
-				name: nameInput.current!.value,
-				timestamp: Date.now(),
-				published: publicInput.current!.value == 'on' ? true : false,
-			}),
-		})
-			.then((res) => {
-				res.json()
-					.then((r) => {
-						for (let i = 0; i < files.length; i++) {
-							const formData = new FormData();
-							let file = files.item(i);
-							if (file != null) {
-								formData.append('file', file);
-								axios
-									.post(
-										`https://api.dailies.tk/collection/${r.id}/image`,
-										formData,
-										{
-											headers: { 'content-type': 'multipart/form-data' },
-											withCredentials: true,
-										}
-									)
-									.catch((e) => {
-										alert(e);
-									});
-							}
-						}
-						router.push('/');
-					})
-					.catch((e) => {
-						alert(e);
-					});
-			})
-			.catch((e) => {
-				alert(e);
-			});*/
-
 		axios
 			.post(
 				'https://api.dailies.tk/collection/new',
@@ -110,8 +71,7 @@ const Upload: NextPage = (props: any) => {
 					<meta content="Dailies" property="og:title" />
 					<meta content="website" property="og:type" />
 					<meta content="Upload images" property="og:description" />
-					<meta content="https://dailies.tk/upload" property="og:url" />
-					{/* <meta content={props.data[0].images[0].url} property="og:image" /> */}
+					<meta content={`https://dailies.tk${router.asPath}`} property="og:url" />
 					<meta content="#2f3136" data-react-helmet="true" name="theme-color" />
 					<link rel="icon" href="/favicon.ico" />
 				</Head>

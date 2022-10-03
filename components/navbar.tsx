@@ -14,6 +14,10 @@ export const navItems: {
 		label: 'Home',
 	},
 	{
+		href: '/users',
+		label: 'Users',
+	},
+	{
 		href: '/upload',
 		label: 'Upload',
 	},

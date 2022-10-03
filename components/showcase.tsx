@@ -23,7 +23,7 @@ const Showcase = (props: props) => {
 					}
 				}
 				return (
-					<Link key={index} href={`/collection/${item.id}`} passHref>
+					<Link key={index} href={`/collections/${item.id}`} passHref>
 						<div className="showcase-flip-card">
 							<div className="showcase-flip-card-inner">
 								<div className="showcase-flip-card-front rounded-lg">

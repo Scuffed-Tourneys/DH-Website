@@ -15,6 +15,10 @@ input::file-selector-button {
 	display: none;
 }
 
+.overflow-wrap {
+	overflow-wrap: anywhere;
+}
+
 .image-showcase {
 	margin: -16px -8px;
 	position: relative;
