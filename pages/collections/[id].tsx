@@ -55,19 +55,9 @@ const Home: NextPage = (props: any) => {
 											your browser is so old it can&apos;t even display
 											video&apos;s smh my head my head
 										</video>
-										<div className="group hover:opacity-100 opacity-0 transition-all duration-100 ease-in-out">
+										<div className="hover:opacity-100 opacity-0 transition-all duration-500 ease-in-out">
 											<div className="absolute top-0 z-5 left-[7.25rem]">
 												<Image
-													className="group-hover:opacity-0 transition-all duration-100 opacity-100"
-													src="/430117_star_icon.svg"
-													alt=""
-													width="50"
-													height="50"
-												/>
-											</div>
-											<div className="absolute top-0 z-5 left-[7.25rem]">
-												<Image
-													className="group-hover:opacity-100 transition-all duration-100 opacity-0"
 													src="/star_icon_filled.svg"
 													alt=""
 													width="50"
