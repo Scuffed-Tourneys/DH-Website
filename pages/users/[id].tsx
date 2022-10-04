@@ -4,17 +4,33 @@ import Head from 'next/head';
 import Image from 'next/image';
 import get from 'axios';
 import useSWR from 'swr';
-import Showcase from '../../components/showcase';
 import Link from 'next/link';
+import { useState } from 'react';
+import Settings from '../../components/settings';
 
 const fetcher = (url: string) => fetch(url, { credentials: 'include' }).then((r) => r.json());
 
 const UserPage: NextPage = (props: any) => {
+	const [showSettings, setShowSettings] = useState(false);
+
 	const router = useRouter();
 
 	const { data, error } = useSWR('https://api.dailies.tk/', fetcher);
 	if (!data) return <h1>loading</h1>;
 	if (error) return <h1>error</h1>;
+
+	function closeSettings() {
+		setShowSettings(false);
+	}
+
+	let settings = [];
+	if (router.query.id == data.id) {
+		settings.push(...['rename', 'delete']);
+	}
+	if (data?.permissions?.includes('ROLE_DELETE_USERS')) {
+		settings.push(...['rename', 'delete']);
+		settings.push(...['delete', 'ban']);
+	}
 
 	return (
 		<div>
@@ -30,6 +46,16 @@ const UserPage: NextPage = (props: any) => {
 			</Head>
 
 			<main>
+				{showSettings ? (
+					<Settings
+						router={router}
+						banned={props.data.banned}
+						shownSettings={settings}
+						closeSettings={closeSettings}
+					/>
+				) : (
+					<></>
+				)}
 				{[''].map((item, index) => {
 					if (props.data.banned) {
 						if (!data?.permissions?.includes('ROLE_MODIFY_USERS')) {
@@ -85,6 +111,9 @@ const UserPage: NextPage = (props: any) => {
 					</div>
 					<div className="right-3 top-3 absolute">
 						<Image
+							onClick={() => {
+								setShowSettings(true);
+							}}
 							className="hover:rotate-[360deg] transition-all duration-300 ease-in-out cursor-pointer"
 							src="/Ic_settings_48px.svg"
 							alt=""
