@@ -5,19 +5,28 @@ import Image from 'next/image';
 import Link from 'next/link';
 import * as schemas from '../../types/schemas';
 import { useRouter } from 'next/router';
+import useSWR from 'swr';
+
+const fetcher = (url: string) => fetch(url, { credentials: 'include' }).then((r) => r.json());
 
 const Home: NextPage = (props: any) => {
 	const router = useRouter();
-	const date = new Date(props.data.timestamp * 1000);
+
+	const { data, error } = useSWR(`https://api.dailies.tk/collection/${router.query.id}`, fetcher);
+	if (!data) return <h1>loading</h1>;
+	if (error) return <h1>error</h1>;
+
+	const date = new Date(data.timestamp * 1000);
+
 	return (
 		<div>
 			<Head>
-				<title>{props.data.name}</title>
-				<meta content={props.data.name} property="og:title" />
+				<title>{data.name}</title>
+				<meta content={data.name} property="og:title" />
 				<meta content="website" property="og:type" />
-				<meta content={props.data.uploadedBy.username} property="og:description" />
+				<meta content={data.uploadedBy.username} property="og:description" />
 				<meta content={`https://dailies.tk${router.asPath}`} property="og:url" />
-				<meta content={props.data.images[0].url} property="og:image" />
+				<meta content={data.images[0].url} property="og:image" />
 				<meta content="#2f3136" data-react-helmet="true" name="theme-color" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
@@ -25,13 +34,13 @@ const Home: NextPage = (props: any) => {
 			<main>
 				<div className="ml-16 mt-4">
 					<h1>
-						<strong>{props.data.name}</strong>
+						<strong>{data.name}</strong>
 					</h1>
-					<h2>{props.data.uploadedBy.username}</h2>
+					<h2>{data.uploadedBy.username}</h2>
 					<p>{`${date.getDay()}/${date.getMonth()}/${date.getFullYear()}`}</p>
 				</div>
 				<div className="grid gap-4 pl-16 pr-[1rem] mx-auto grid-cols-6 grid-rows-3 w-min-[0px] w-max-[1920px] h-min-[0px] h-max-[1080px]">
-					{props.data.images.map((image: schemas.Image, index: number) => {
+					{data.images.map((image: schemas.Image, index: number) => {
 						if (image.url.endsWith('.mp4')) {
 							return (
 								<Link key={index} href={image.url} passHref>
@@ -97,7 +106,11 @@ const Home: NextPage = (props: any) => {
 														alert('Image added to favorites')
 													}
 													className="group-hover:opacity-100 transition-all duration-100 opacity-0"
-													src="/star_icon_filled.svg"
+													src={
+														image.favorited
+															? '/star_icon_filled.svg'
+															: '/star_icon_empty.svg'
+													}
 													alt=""
 													width="50"
 													height="50"
@@ -113,16 +126,6 @@ const Home: NextPage = (props: any) => {
 			</main>
 		</div>
 	);
-};
-
-export const getServerSideProps: GetServerSideProps = async (
-	context: GetServerSidePropsContext
-) => {
-	const res = await get(`https://api.dailies.tk/collection/${context.query.id}`);
-	const data = res.data;
-	return {
-		props: { data },
-	};
 };
 
 export default Home;
