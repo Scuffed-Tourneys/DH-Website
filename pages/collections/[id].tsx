@@ -21,7 +21,7 @@ const Home: NextPage = (props: any) => {
 	const date = new Date(data.timestamp * 1000);
 
 	let settings = [];
-	if (data?.permissions?.includes('ROLE_DELETE_USERS')) {
+	if (data?.permissions?.includes('ROLE_MODIFY_COLLECTIONS')) {
 		settings.push(...['colDelete', 'colUnpublish']);
 	} else if (router.query.id == data.id) {
 		settings.push(...['colDelete', 'colUnpublish']);
