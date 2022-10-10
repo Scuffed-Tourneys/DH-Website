@@ -49,13 +49,15 @@ const Navbar = () => {
 						))}
 					</nav>
 					<div className="hidden md:block">
-						<Image
-							className="rounded-full cursor-pointer"
-							src={data.avatarUrl}
-							alt=""
-							width="60"
-							height="60"
-						/>
+						<Link href={`/users/${data.id}`} passHref>
+							<Image
+								className="rounded-full cursor-pointer"
+								src={data.avatarUrl}
+								alt=""
+								width="60"
+								height="60"
+							/>
+						</Link>
 					</div>
 				</div>
 			</header>

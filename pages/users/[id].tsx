@@ -24,12 +24,11 @@ const UserPage: NextPage = (props: any) => {
 	}
 
 	let settings = [];
-	if (router.query.id == data.id) {
-		settings.push(...['rename', 'delete']);
-	}
 	if (data?.permissions?.includes('ROLE_DELETE_USERS')) {
 		settings.push(...['rename', 'delete']);
-		settings.push(...['delete', 'ban']);
+		settings.push(...['ban']);
+	} else if (router.query.id == data.id) {
+		settings.push(...['rename', 'delete']);
 	}
 
 	return (
@@ -49,7 +48,7 @@ const UserPage: NextPage = (props: any) => {
 				{showSettings ? (
 					<Settings
 						router={router}
-						banned={props.data.banned}
+						userdata={props.data}
 						shownSettings={settings}
 						closeSettings={closeSettings}
 					/>
