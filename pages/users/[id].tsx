@@ -25,10 +25,9 @@ const UserPage: NextPage = (props: any) => {
 
 	let settings = [];
 	if (data?.permissions?.includes('ROLE_DELETE_USERS')) {
-		settings.push(...['rename', 'delete']);
-		settings.push(...['ban']);
+		settings.push(...['usrRename', 'usrDelete', 'usrBan']);
 	} else if (router.query.id == data.id) {
-		settings.push(...['rename', 'delete']);
+		settings.push(...['usrRename', 'usrDelete']);
 	}
 
 	return (

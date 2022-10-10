@@ -20,13 +20,13 @@ const Settings = (props: any) => {
 				</div>
 				{props.shownSettings.map((item: string, index: number) => {
 					switch (item) {
-						case 'ban':
+						case 'usrBan':
 							return (
-								<div className="m-4 flex">
-									<h1 className="w-full cursor-default">Ban user</h1>
-									<div className="w-full" />
+								<div className="m-4 h-8 flex">
+									<h1 className="cursor-default w-1/3">Ban user</h1>
+									<div className="w-1/3" />
 									<button
-										className="w-full max-w-xs"
+										className="rounded-lg hover:bg-blue-500 hover:bg-opacity-75 transition-all ease-in-out duration-100 w-1/3"
 										onClick={() => {
 											axios
 												.put(
@@ -39,18 +39,20 @@ const Settings = (props: any) => {
 												});
 										}}
 									>
-										{props.userdata.banned ? 'Unban' : 'Ban'}
+										<p className="text-center">
+											{props.userdata.banned ? 'Unban' : 'Ban'}
+										</p>
 									</button>
 								</div>
 							);
 
-						case 'delete':
+						case 'usrDelete':
 							return (
-								<div className="m-4 flex">
-									<h1 className="w-full cursor-default">Delete user</h1>
-									<div className="w-full" />
+								<div className="m-4 h-8 flex">
+									<h1 className="cursor-default w-1/3">Delete user</h1>
+									<div className="w-1/3" />
 									<button
-										className="w-full max-w-xs"
+										className="rounded-lg hover:bg-blue-500 hover:bg-opacity-75 transition-all ease-in-out duration-100 w-1/3"
 										onClick={() => {
 											axios
 												.put(
@@ -63,24 +65,24 @@ const Settings = (props: any) => {
 												});
 										}}
 									>
-										Delete
+										<p className="text-center">Delete</p>
 									</button>
 								</div>
 							);
 
-						case 'rename':
+						case 'usrRename':
 							return (
-								<div className="m-4 flex">
-									<h1 className="w-full cursor-default">Username: </h1>
-									<div className="w-1/2" />
-									<input
-										ref={renameRef}
-										className=""
-										type="text"
-										defaultValue={props.userdata.username}
-									/>
+								<div className="m-4 h-8 flex">
+									<h1 className="cursor-default w-1/3">Username: </h1>
+									<div className="w-1/3">
+										<input
+											ref={renameRef}
+											type="text"
+											defaultValue={props.userdata.username}
+										/>
+									</div>
 									<button
-										className="w-full"
+										className="rounded-lg hover:bg-blue-500 hover:bg-opacity-75 transition-all ease-in-out duration-100 w-1/3"
 										onClick={() => {
 											if (renameRef.current?.value !== '') {
 												axios
@@ -96,6 +98,53 @@ const Settings = (props: any) => {
 										}}
 									>
 										Submit
+									</button>
+								</div>
+							);
+
+						case 'colDelete':
+							return (
+								<div className="m-4 h-8 flex">
+									<h1 className="cursor-default w-1/3">Delete collection</h1>
+									<div className="w-1/3" />
+									<button
+										className="max-w-xs rounded-lg hover:bg-blue-500 hover:bg-opacity-75 transition-all ease-in-out duration-100 w-1/3"
+										onClick={() => {
+											axios
+												.delete(
+													`https://api.dailies.tk/collection/${props.router.query.id}`,
+													{ withCredentials: true }
+												)
+												.then(() => {
+													props.router.reload();
+												});
+										}}
+									>
+										Delete
+									</button>
+								</div>
+							);
+
+						case 'colUnpublish':
+							return (
+								<div className="m-4 h-8 flex">
+									<h1 className="cursor-default w-1/3">Published</h1>
+									<div className="w-1/3" />
+									<button
+										className="max-w-xs rounded-lg hover:bg-blue-500 hover:bg-opacity-75 transition-all ease-in-out duration-100 w-1/3"
+										onClick={() => {
+											axios
+												.put(
+													`https://api.dailies.tk/collection/${props.router.query.id}`,
+													{ published: !props.colData.published },
+													{ withCredentials: true }
+												)
+												.then(() => {
+													props.router.reload();
+												});
+										}}
+									>
+										{props.colData.published ? 'Make public' : 'Make private'}
 									</button>
 								</div>
 							);

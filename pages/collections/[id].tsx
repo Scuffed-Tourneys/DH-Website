@@ -1,15 +1,17 @@
-import get from 'axios';
-import type { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next';
+import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import * as schemas from '../../types/schemas';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
+import Settings from '../../components/settings';
+import { useState } from 'react';
 
 const fetcher = (url: string) => fetch(url, { credentials: 'include' }).then((r) => r.json());
 
 const Home: NextPage = (props: any) => {
+	const [showSettings, setShowSettings] = useState(false);
 	const router = useRouter();
 
 	const { data, error } = useSWR(`https://api.dailies.tk/collection/${router.query.id}`, fetcher);
@@ -17,6 +19,17 @@ const Home: NextPage = (props: any) => {
 	if (error) return <h1>error</h1>;
 
 	const date = new Date(data.timestamp * 1000);
+
+	let settings = [];
+	if (data?.permissions?.includes('ROLE_DELETE_USERS')) {
+		settings.push(...['colDelete', 'colUnpublish']);
+	} else if (router.query.id == data.id) {
+		settings.push(...['colDelete', 'colUnpublish']);
+	}
+
+	function closeSettings() {
+		setShowSettings(false);
+	}
 
 	return (
 		<div>
@@ -32,12 +45,47 @@ const Home: NextPage = (props: any) => {
 			</Head>
 
 			<main>
-				<div className="ml-16 mt-4">
-					<h1>
-						<strong>{data.name}</strong>
-					</h1>
-					<h2>{data.uploadedBy.username}</h2>
-					<p>{`${date.getDay()}/${date.getMonth()}/${date.getFullYear()}`}</p>
+				{showSettings ? (
+					<Settings
+						router={router}
+						colData={data}
+						shownSettings={settings}
+						closeSettings={closeSettings}
+					/>
+				) : (
+					<></>
+				)}
+				<div className="m-16 shadow-xl flex relative">
+					<div className="m-5">
+						<Image
+							className="rounded-full"
+							src={data.uploadedBy.avatarUrl}
+							alt=""
+							width="256"
+							height="256"
+						/>
+					</div>
+					<div className="m-5 my-auto">
+						<h1 className="text-lg">
+							<strong>{data.name}</strong>
+						</h1>
+						<h1>
+							Author: <strong>{data.uploadedBy.username}</strong>
+						</h1>
+						<h1>{`${date.getDay()}/${date.getMonth()}/${date.getFullYear()}`}</h1>
+					</div>
+					<div className="right-3 top-3 absolute">
+						<Image
+							onClick={() => {
+								setShowSettings(true);
+							}}
+							className="hover:rotate-[360deg] transition-all duration-300 ease-in-out cursor-pointer"
+							src="/Ic_settings_48px.svg"
+							alt=""
+							width="48"
+							height="48"
+						/>
+					</div>
 				</div>
 				<div className="grid gap-4 pl-16 pr-[1rem] mx-auto grid-cols-6 grid-rows-3 w-min-[0px] w-max-[1920px] h-min-[0px] h-max-[1080px]">
 					{data.images.map((image: schemas.Image, index: number) => {
